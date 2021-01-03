@@ -13,6 +13,7 @@ jobs:
       - name: Draft Release
         uses: release-drafter/release-drafter@master
         with:
+          prerelease: true
           config-name: draft.config.yml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
