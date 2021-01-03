@@ -1,0 +1,24 @@
+name: Pipeline
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  draft:
+    name: Draft
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Draft Release
+        uses: release-drafter/release-drafter@master
+        with:
+          config-name: draft.config.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Debug
+        run: |
+          echo ${{ steps.draft.outputs.id }}
+          echo ${{ steps.draft.outputs.name }}
+          echo ${{ steps.draft.outputs.tag_name }}
